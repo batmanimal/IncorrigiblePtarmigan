@@ -4,8 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <title>IncorrigiblePtarmigan</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+     body { padding-top:50px; padding-bottom:50px; padding-left:20px; }
+  </style>
+
 </head>
+
+<header>
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Super Awesome Seating Chart App Name</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="/edit"><i class="fa fa-star"></i> Edit</a></li>
+    </ul>
+    </nav>
+</header>
 
 <body>
 
@@ -17,6 +38,12 @@
         input field for plus-one name
         nextGuest button
         done button -->
+      <h2>Guest Input Form</h2>
+        <form class = "guestname-form">
+          <label for = "guestname-field">Guest Name: </label>
+          <input type="text" class="guestname-field" name="guestname-field" placeholder="Guest's full name" value="">
+        </form>
+
       </div>
     </div>
   </div>
