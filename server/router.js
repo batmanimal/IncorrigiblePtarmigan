@@ -20,10 +20,20 @@ module.exports = function(app, express) {
   app.post('/create', function(req,res) {
     console.log('------------------------------');
     // console.log(req.body.guests[0]);
-    console.log(req.body.guests[0]);
+    // console.log(req.body.guests[0]);
     console.log('------------------------------');
     var guests = req.body.guests;
     for(var i =0; i<guests.length;i++){
+
+/*
+ body: {
+ guests: [{
+  guestName: 'marco',
+  friendName: 'Carl',
+ },{},{}]
+     }
+    */
+
       var newGuest = new Guest ({
         guestName: guests[i].guestName,
         friendName: guests[i].friendName,
@@ -51,8 +61,19 @@ module.exports = function(app, express) {
   });
 
 // edit guest's plus-one using guestName as param (we set guestName as unique in schema)
-  app.put('/edit/:guestname', function(req, res){
+  app.put('/edit', function(req, res){
+    // var newFriend = req.body.friendName;
+
+    var changes = {
+      targetGuest: 'Jenny',
+      changes: [
+        guestName: "Jenny Kim",
+        friendName: "Frank"
+      ]
+    };
+
     Guest.findOne({ 'guestName': req.params.guestname }, function(err, guest){
+      console.log(guest);
       if(err){
         res.send(400);
       } else {
