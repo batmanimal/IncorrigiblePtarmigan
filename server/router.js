@@ -23,17 +23,7 @@ module.exports = function(app, express) {
     // console.log(req.body.guests[0]);
     console.log('------------------------------');
     var guests = req.body.guests;
-    for(var i =0; i<guests.length;i++){
-
-/*
- body: {
- guests: [{
-  guestName: 'marco',
-  friendName: 'Carl',
- },{},{}]
-     }
-    */
-
+    for(var i = 0; i<guests.length;i++){
       var newGuest = new Guest ({
         guestName: guests[i].guestName,
         friendName: guests[i].friendName,
@@ -41,7 +31,7 @@ module.exports = function(app, express) {
       });
       newGuest.save(function(err,newGuest){
         if(err) return console.log(err);
-        console.log('//////WERE SAVING OMG!!! CRAZY !!!! ')
+        // console.log('//////WERE SAVING OMG!!! CRAZY !!!! ')
       });
     }
     res.send(200);
@@ -62,30 +52,25 @@ module.exports = function(app, express) {
 
 // edit guest's plus-one using guestName as param (we set guestName as unique in schema)
   app.put('/edit', function(req, res){
-    // var newFriend = req.body.friendName;
+    var changes = req.body.changes;
 
-    var changes = {
-      targetGuest: 'Jenny',
-      changes: [
-        guestName: "Jenny Kim",
-        friendName: "Frank"
-      ]
-    };
-
-    Guest.findOne({ 'guestName': req.params.guestname }, function(err, guest){
-      console.log(guest);
+    // test object: { "changes": [ "Jennie Kim", { "guestName": "JK", "friendName": "Eric"} ]}
+    Guest.findOne({ guestName: changes[0]}, function(err, guest){
+      console.log("inside findOne");
       if(err){
         res.send(400);
-      } else {
-        guest.friendName = req.body.friendName;
-        guest.save(function(err){
-          if(err) {
-            res.send(400);
-          } else {
-            res.send(200);
-          }
-        });
+      } 
+      for(var key in changes[1]) {
+        guest[key] = changes[1][key];
       }
+      guest.save(function(err){
+        if(err) {
+          res.send(400);
+        } else {
+          res.send(200);
+        }
+      });
+      
     });
   });
 
