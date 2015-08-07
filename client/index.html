@@ -8,49 +8,53 @@
   <!-- Styles -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" src="style.css">
   <style>
      body { padding-top:50px; padding-bottom:50px; padding-left:20px; }
   </style>
 
 </head>
 
-<header>
-  <nav class="navbar navbar-default">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">Super Awesome Seating Chart App Name</a>
-    </div>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
-      <li><a href="/edit"><i class="fa fa-star"></i> Edit</a></li>
-    </ul>
-    </nav>
-</header>
-
 <body>
+    <header>
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Super Awesome Seating Chart App Name</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/edit"><i class="fa fa-star"></i> Edit</a></li>
+      </ul>
+    </nav>
+    </header>
 
   <div id="container">
-    <div id="app">
-      <div id="guestInput">
+    <div>
+      <h2>Guest Input Form</h2>
      <!--    input field for guestName
         plus-one button
         input field for plus-one name
         nextGuest button
         done button -->
-      <h2>Guest Input Form</h2>
-        <form class = "guestname-form">
-          <label for = "guestname-field">Guest Name: </label>
-          <input type="text" class="guestname-field" name="guestname-field" placeholder="Guest's full name" value="">
+        <form class="form-horizontal" id="guestInput">
+          <label form="guestname-field">Guest Name: </label>
+          <input type="text" class="guestname-field" name="guestname-field" placeholder="Guest's full name">
+
+          <button type="submit" class="add-guest">Submit</button>
+          
+            <div class="col-sm-offset-3 col-sm-10">
+              <button id="addGuest" type="submit" class="btn btn-default">Save and Add Next Guest</button>
+            </div>
+
         </form>
 
-      </div>
     </div>
   </div>
 
   <!-- Libraries -->
   <script src="bower_components/underscore/underscore-min.js"></script>
-  <script src="bower_components/jquery/jquery-min.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/backbone/backbone-min.js"></script>
 
   <!-- Models/Collections -->
@@ -64,11 +68,31 @@
   <script src="views/GuestView.js"></script>
   <script src="views/GuestListView.js"></script>
   <script src="views/GuestInputView.js"></script>
-  <script src="views/DiningTableView.js"></script>
+  <script src="views/DiningTblView.js"></script>
   <script src="views/ChartView.js"></script>
 
   <!-- Launch App -->
   <script src="app.js"></script>
+
+
+<script>
+$(function(){
+
+  var testCollection = new Guests([
+    {
+      "guestName": "Eric",
+      "friendId": 1,
+      "diningTableId": 1
+    }
+  ]);
+  window.testCollection = testCollection;
+
+  var testview = new GuestInputView({collection: testCollection});
+  debugger;
+  window.testview = testview;   
+});
+</script>
+
 </body>
 
 </html>

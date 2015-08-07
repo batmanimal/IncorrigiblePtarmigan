@@ -2,12 +2,13 @@
 var Guest = Backbone.Model.extend({
 	defaults: {
 		// user input will be friendName, server looksup friendId from the db
+		guestName: 'J Doe',
 		friendName: '',
 		diningTableId: null,
 		constraints: []
 	},
 	initialize: function(){
-		
+
 	}
 });
 

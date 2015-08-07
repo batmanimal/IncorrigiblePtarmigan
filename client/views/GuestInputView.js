@@ -1,10 +1,13 @@
 var GuestInputView = Backbone.View.extend({
 // the collection will be set to Guests when GuestInputView is instantiated by the AppView
   // set element to the guestInput element in the dom
-	el: '#guestInput',
+	el: '.guestInput',
+
+  // model: Guest,
 
   initialize: function(){
 		this.render();
+    debugger;
 	},
 	render: function(){
     // the html that comprises the form
@@ -12,16 +15,23 @@ var GuestInputView = Backbone.View.extend({
       // this.$el = $guestName;  // convention to prefix var with $ to remember it's a jq obj
 	},
 	events: {
-    // click event triggers a general purpose fcn that figures out which function to call on collection
-    'click': 'doAction'
+    // TODO click event triggers a general purpose fcn that figures out which function to call on collection
+    'submit .add-guest': 'callAddGuest'
 	},
-  doAction: function(){
-    // if click id is addGuest
+
+  callAddGuest: function(e){
+    // e.preventDefault();
+    debugger;
+
+    // traverse dom to find the element to pass to our constructor
+    this.collection.addGuest(this.$el.find('guestname-field').val());
+    // if click id is add-guest
       // call addGuest method on collection
-    // else if click id is plusOne
+    // else if click id is add-friend
       // call plusOne method on collection
-    // else if click id is done
-      // call done method on collection
+    // else if click id is create-list
+      // call createList method on collection
+    // callAddConstraint
   }
 
 
